@@ -21,6 +21,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [playing,setPlaying]=useState<number|null>(null);
   const [saved,setSaved]=useState(false);
+  const finale = lessons.at(-1);
+  if (!finale) return null;
   return <main>
     <SiteHeader />
     <section id="inicio" className="hero">
@@ -52,7 +54,7 @@ function Index() {
       </div>
     </section>
 
-    <section className="finale"><img src={lessons[9].image} alt="Bufanda con capucha de gato tejida a crochet"/><div className="finale-shade"/><div className="content-width finale-copy"><span className="eyebrow">El gran final</span><h2>Teje una bufanda<br/><em>con alma felina.</em></h2><p>En la última lección aplicarás puntos, aumentos y terminaciones para crear una pieza completa.</p><Button size="lg" onClick={()=>setPlaying(9)}><Play fill="currentColor"/>Ver proyecto final</Button></div></section>
+    <section className="finale"><img src={finale.image} alt="Bufanda con capucha de gato tejida a crochet"/><div className="finale-shade"/><div className="content-width finale-copy"><span className="eyebrow">El gran final</span><h2>Teje una bufanda<br/><em>con alma felina.</em></h2><p>En la última lección aplicarás puntos, aumentos y terminaciones para crear una pieza completa.</p><Button size="lg" onClick={()=>setPlaying(lessons.length-1)}><Play fill="currentColor"/>Ver proyecto final</Button></div></section>
     <footer className="site-footer"><div className="brand"><span className="brand-mark">✺</span><span>ATELIER</span></div><p>Contenido original de Arte en Crochet.</p><a href="mailto:arteencrochetoficial@gmail.com">arteencrochetoficial@gmail.com</a><Link to="/tutoriales-amigurumis">Tutoriales de Amigurumis</Link></footer>
     {playing!==null&&<VideoPlayer items={lessons} index={playing} onClose={()=>setPlaying(null)} onChange={setPlaying}/>} 
   </main>;
