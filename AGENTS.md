@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project architecture
+
+- Keep the original crochet course on `/` and the imported Amigurumi catalog on `/tutoriales-amigurumis` so both collections remain independently shareable.
+- Keep static lesson and tutorial catalog metadata in `src/lib/course-data.ts`; this makes the two presentation routes use one consistent video model.
