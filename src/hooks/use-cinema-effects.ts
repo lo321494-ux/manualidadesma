@@ -9,7 +9,8 @@ export function useCinemaEffects() {
     root.classList.add("fx-ready");
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-    }), { threshold: 0.08, rootMargin: "0px 0px -4% 0px" });
+    }), { threshold: 0, rootMargin: "0px 0px 10% 0px" });
+    const safety = window.setTimeout(() => document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-in")), 1800);
     document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
 
     let frame = 0;
@@ -34,7 +35,7 @@ export function useCinemaEffects() {
     };
     if (fine) { document.addEventListener("pointermove", onMove); document.addEventListener("pointerout", onOut); }
     return () => {
-      io.disconnect(); cancelAnimationFrame(frame);
+      io.disconnect(); cancelAnimationFrame(frame); clearTimeout(safety);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("pointermove", onMove); document.removeEventListener("pointerout", onOut);
     };
