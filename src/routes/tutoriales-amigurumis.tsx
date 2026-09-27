@@ -1,3 +1,4 @@
+import { requireAccess } from "@/lib/gate.functions";
 import { createFileRoute } from "@tanstack/react-router";
 import { Play } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/tutoriales-amigurumis")({
     const v = Number(s["v"]);
     return Number.isInteger(v) && v >= 0 && v < amigurumis.length ? { v } : {};
   },
+  beforeLoad: () => requireAccess(),
   head: () => ({ meta: [
     { title: "Tutoriales de Amigurumis | Crochet" },
     { name: "description", content: "Aprende a tejer amigurumis paso a paso con tutoriales fáciles, videos y patrones." },
