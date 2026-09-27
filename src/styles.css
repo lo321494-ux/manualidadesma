@@ -374,3 +374,9 @@ button:focus-visible, a:focus-visible { outline:2px solid var(--accent); outline
 .gate-tabs button[aria-selected="true"] { background:var(--secondary); color:var(--foreground); }
 .gate-new { display:grid; gap:1rem; }
 .gate-cta { min-height:3rem; border:1px solid var(--border); border-radius:.7rem; background:var(--primary); color:var(--primary-foreground); font:inherit; font-weight:600; cursor:pointer; }
+.gate-tabs a { display:flex; align-items:center; justify-content:center; gap:.45rem; min-height:2.75rem; border-radius:.6rem; color:var(--muted-foreground); font-size:.85rem; text-decoration:none; }
+.gate-tabs a svg { width:1rem; height:1rem; }
+.gate-tabs a[aria-selected="true"] { background:var(--secondary); color:var(--foreground); }
+.gate-cta { display:flex; align-items:center; justify-content:center; gap:.5rem; text-decoration:none; }
+.gate-cta svg { width:1.1rem; height:1.1rem; }
+.gate-link { border:0; background:none; color:var(--muted-foreground); font:inherit; font-size:.85rem; text-decoration:underline; cursor:pointer; min-height:2.5rem; }

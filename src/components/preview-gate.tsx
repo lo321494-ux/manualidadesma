@@ -1,6 +1,8 @@
-import { Clapperboard, KeyRound, Sparkles } from "lucide-react";
+import { Clapperboard, MessageCircle, KeyRound, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LoginForm } from "@/components/login-form";
+
+const WHATSAPP = `https://wa.me/573202271894?text=${encodeURIComponent("Hola, quiero obtener mi acceso a la plataforma Crochet.")}`;
 
 /** Free 10-second preview for new visitors; then the platform locks and asks for access. */
 export function PreviewGate({ unlocked, remaining }: { unlocked: boolean; remaining: number }) {
@@ -25,11 +27,11 @@ export function PreviewGate({ unlocked, remaining }: { unlocked: boolean; remain
       <h2 id="gate-title">Tu vista previa terminó</h2>
       <p>Continúa disfrutando de toda la plataforma: cursos, lecciones y tutoriales en video.</p>
       <div className="gate-tabs" role="tablist">
-        <button type="button" role="tab" aria-selected={tab === "new"} onClick={() => setTab("new")}><Clapperboard />Soy nuevo</button>
+        <a role="tab" aria-selected={tab === "new"} href={WHATSAPP} target="_blank" rel="noopener noreferrer" onClick={() => setTab("new")}><Clapperboard />Soy nuevo</a>
         <button type="button" role="tab" aria-selected={tab === "member"} onClick={() => setTab("member")}><KeyRound />Ya tengo acceso</button>
       </div>
       {tab === "new"
-        ? <div className="gate-new"><p>Obtén tu acceso para ver todos los cursos y tutoriales sin límites, desde cualquier dispositivo.</p><button type="button" className="login-submit gate-cta" onClick={() => setTab("member")}>Ya recibí mi usuario y contraseña</button></div>
+        ? <div className="gate-new"><p>Obtén tu acceso para ver todos los cursos y tutoriales sin límites, desde cualquier dispositivo.</p><a className="login-submit gate-cta" href={WHATSAPP} target="_blank" rel="noopener noreferrer"><MessageCircle />Escríbenos por WhatsApp</a><button type="button" className="gate-link" onClick={() => setTab("member")}>Ya recibí mi usuario y contraseña</button></div>
         : <LoginForm onDone={() => setDone(true)} />}
     </div>
   </div>;
