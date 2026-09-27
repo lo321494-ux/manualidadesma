@@ -21,7 +21,6 @@ function AmigurumisPage(){
   const [playing,setPlaying]=useState<number|null>(null);
   const featured=amigurumis[0];
   const withVideo=useMemo(()=>amigurumis.filter(x=>x.videoIds.length>0),[]);
-  const patterns=useMemo(()=>amigurumis.filter(x=>x.videoIds.length===0),[]);
   if (!featured) return null;
   return <main className="amigurumi-page"><SiteHeader/>
     <section className="catalog-hero"><img src={featured.image} alt={featured.title}/><div className="catalog-shade"/><div className="catalog-intro"><span className="eyebrow">Colección original</span><h1>Tutoriales de <em>Amigurumis</em></h1><p>Aprende a tejer amigurumis paso a paso con nuestros tutoriales en video y guías detalladas. Encuentra patrones fáciles, proyectos para principiantes y creaciones más avanzadas para que puedas tejer tus personajes favoritos desde cero.</p><button className="cinema-cta" onClick={()=>setPlaying(0)}><Play fill="currentColor"/>Ver tutorial destacado</button></div></section>
