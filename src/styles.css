@@ -385,3 +385,4 @@ button:focus-visible, a:focus-visible { outline:2px solid var(--accent); outline
 .tutorial-grid > * { min-width:0; }
 .rail-wrap { position:relative; overflow:hidden; }
 @media (max-width:760px){ .tutorial-grid{grid-template-columns:1fr;} .catalog-title-row{flex-wrap:wrap;gap:1rem;} .rail-arrow{display:none;} }
+.video-hint { padding:.6rem 1rem 0; font-size:.72rem; color:var(--muted-foreground); text-align:center; }
