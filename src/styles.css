@@ -244,3 +244,5 @@
 /* Cinematic polish (gentle) */
 .poster, .cinema-card img, .tutorial-card img { border-radius:.6rem; }
 @media (hover:hover) { .lesson-card, .cinema-card, .tutorial-card { transition:transform .35s ease; } .lesson-card:hover, .cinema-card:hover, .tutorial-card:hover { transform:translateY(-.3rem); } }
+.site-header { background:color-mix(in oklab,var(--background) 88%,transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid color-mix(in oklab,var(--foreground) 6%,transparent); }
+.lesson-rail, .cinema-rail { scroll-padding-inline:1rem; padding-inline:clamp(1rem,4vw,4rem); }
