@@ -1,10 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
 import { useSession } from "@tanstack/react-start/server";
-import { redirect } from "@tanstack/react-router";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 
-type GateSession = { unlocked?: boolean };
+type GateSession = { unlocked?: boolean; previewStart?: number };
+const PREVIEW_MS = 10_000;
 
 function sessionConfig() {
   return {
@@ -21,10 +21,12 @@ function matches(input: string, expected: string) {
   return timingSafeEqual(a, b);
 }
 
-export const requireAccess = createServerFn({ method: "GET" }).handler(async () => {
+export const getAccess = createServerFn({ method: "GET" }).handler(async () => {
   const session = await useSession<GateSession>(sessionConfig());
-  if (!session.data.unlocked) throw redirect({ to: "/ingresar" });
-  return { ok: true as const };
+  if (session.data.unlocked) return { unlocked: true as const, remaining: 0 };
+  let start = session.data.previewStart;
+  if (!start) { start = Date.now(); await session.update({ ...session.data, previewStart: start }); }
+  return { unlocked: false as const, remaining: Math.max(0, start + PREVIEW_MS - Date.now()) };
 });
 
 export const hasAccess = createServerFn({ method: "GET" }).handler(async () => {
@@ -42,12 +44,12 @@ export const signIn = createServerFn({ method: "POST" })
     const okPass = matches(data.password, pass);
     if (!(okUser && okPass)) return { ok: false as const };
     const session = await useSession<GateSession>(sessionConfig());
-    await session.update({ unlocked: true });
+    await session.update({ ...session.data, unlocked: true });
     return { ok: true as const };
   });
 
 export const signOut = createServerFn({ method: "POST" }).handler(async () => {
   const session = await useSession<GateSession>(sessionConfig());
-  await session.clear();
+  await session.update({ unlocked: false, previewStart: 1 });
   return { ok: true as const };
 });

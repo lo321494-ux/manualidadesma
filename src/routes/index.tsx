@@ -1,4 +1,5 @@
-import { requireAccess } from "@/lib/gate.functions";
+import { getAccess } from "@/lib/gate.functions";
+import { PreviewGate } from "@/components/preview-gate";
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, Heart, Info, Play } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/")({
     const v = Number(s["v"]);
     return Number.isInteger(v) && v >= 0 && v < lessons.length ? { v } : {};
   },
-  beforeLoad: () => requireAccess(),
+  loader: () => getAccess(),
   head: () => ({ meta: [
     { title: "Curso de Crochet desde cero | Crochet" },
     { name: "description", content: "Curso gratuito de crochet desde cero: materiales, puntos esenciales, tejido circular y un proyecto final paso a paso." },
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useCinemaEffects();
+  const access = Route.useLoaderData();
   const { v } = Route.useSearch();
   const navigate = Route.useNavigate();
   const playing = v ?? null;
@@ -76,5 +78,6 @@ function Index() {
     <section className="finale" data-reveal><img src={finale.image} alt="Bufanda con capucha de gato tejida a crochet" loading="lazy" /><div className="finale-shade" /><div className="content-width finale-copy"><span className="eyebrow">El gran final</span><h2>Teje una bufanda<br /><em>con alma felina.</em></h2><p>En la última lección aplicarás puntos, aumentos y terminaciones para crear una pieza completa.</p><Button size="lg" onClick={() => setPlaying(lessons.length - 1)}><Play fill="currentColor" />Ver proyecto final</Button></div></section>
     <SiteFooter />
     {playing !== null && <VideoPlayer items={lessons} index={playing} onClose={() => setPlaying(null)} onChange={setPlaying} />}
+    <PreviewGate unlocked={access.unlocked} remaining={access.remaining} />
   </main>;
 }
