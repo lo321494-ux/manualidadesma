@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Film, Menu, Play, Search, X } from "lucide-react";
+import { Film, LogOut, Menu, Play, Search, X } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { signOut } from "@/lib/gate.functions";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { amigurumis, lessons } from "@/lib/course-data";
@@ -64,6 +66,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [searching, setSearching] = useState(false);
   const close = () => setOpen(false);
+  const logout = useServerFn(signOut);
+  const nav = useNavigate();
+  const exit = async () => { await logout(); nav({ to: "/ingresar", replace: true }); };
   return <header className="site-header">
     <Link to="/" hash="inicio" className="brand" aria-label="Crochet, inicio"><span className="brand-mark" aria-hidden="true">✧</span><span className="brand-name">Crochet</span><span className="brand-mark" aria-hidden="true">✧</span></Link>
     <nav className="desktop-nav" aria-label="Navegación principal">
@@ -71,6 +76,7 @@ export function SiteHeader() {
     </nav>
     <div className="header-actions">
       <Button variant="ghost" size="icon" aria-label="Buscar" onClick={() => { setOpen(false); setSearching(true); }}><Search /></Button>
+      <Button variant="ghost" size="icon" aria-label="Cerrar sesión" title="Cerrar sesión" onClick={exit}><LogOut /></Button>
       <Button variant="ghost" size="icon" className="menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-expanded={open}>{open ? <X /> : <Menu />}</Button>
     </div>
     {open && <nav className="mobile-nav" aria-label="Menú">

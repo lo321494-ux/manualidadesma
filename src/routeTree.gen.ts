@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IngresarRouteImport } from './routes/ingresar'
 import { Route as TutorialesAmigurumisRouteImport } from './routes/tutoriales-amigurumis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IngresarRoute = IngresarRouteImport.update({
+  id: '/ingresar',
+  path: '/ingresar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TutorialesAmigurumisRoute = TutorialesAmigurumisRouteImport.update({
@@ -25,27 +31,31 @@ const TutorialesAmigurumisRoute = TutorialesAmigurumisRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ingresar': typeof IngresarRoute
   '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ingresar': typeof IngresarRoute
   '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ingresar': typeof IngresarRoute
   '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tutoriales-amigurumis'
+  fullPaths: '/' | '/ingresar' | '/tutoriales-amigurumis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tutoriales-amigurumis'
-  id: '__root__' | '/' | '/tutoriales-amigurumis'
+  to: '/' | '/ingresar' | '/tutoriales-amigurumis'
+  id: '__root__' | '/' | '/ingresar' | '/tutoriales-amigurumis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IngresarRoute: typeof IngresarRoute
   TutorialesAmigurumisRoute: typeof TutorialesAmigurumisRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ingresar': {
+      id: '/ingresar'
+      path: '/ingresar'
+      fullPath: '/ingresar'
+      preLoaderRoute: typeof IngresarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tutoriales-amigurumis': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IngresarRoute: IngresarRoute,
   TutorialesAmigurumisRoute: TutorialesAmigurumisRoute,
 }
 export const routeTree = rootRouteImport
