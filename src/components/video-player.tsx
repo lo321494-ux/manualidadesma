@@ -13,7 +13,7 @@ export function VideoPlayer({items,index,onClose,onChange}:{items:VideoItem[];in
     <div className="player-shell">
       <div className="player-top"><p>{items===lessonsRef?`Lección ${index+1} de ${items.length}`:"Tutorial"} <strong>{item.shortTitle}</strong></p><Button variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar video"><X/></Button></div>
       {id ? <div className="video-frame" ref={frame}>
-        <iframe key={`${id}-${index}`} src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&cc_load_policy=0&cc_lang_pref=es&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3`} title={item.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+        <iframe key={`${id}-${index}`} src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=0&disablekb=1&cc_load_policy=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3`} title={item.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
         <Button className="fullscreen-button" variant="secondary" size="icon" aria-label="Ver en pantalla completa" onClick={()=>frame.current?.requestFullscreen?.()}><Maximize/></Button>
       </div> : <div className="video-unavailable"><p>Este tutorial incluye el patrón visual, pero no tiene un video público disponible.</p></div>}
       <div className="player-details"><div><span className="eyebrow">Ahora viendo</span><h2>{item.title}</h2><p>{item.description}</p>{item.videoIds.length>1&&<div className="parts">{item.videoIds.map((_,i)=><Button key={i} variant={i===part?"default":"outline"} size="sm" onClick={()=>setPart(i)}>Parte {i+1}</Button>)}</div>}</div></div>
