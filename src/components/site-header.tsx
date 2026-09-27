@@ -35,7 +35,7 @@ function SiteSearch({ onClose }: { onClose: () => void }) {
   }, [q]);
   const go = (r: Result) => {
     onClose();
-    if (r.kind === "section") navigate({ to: r.to, hash: r.hash });
+    if (r.kind === "section") { if (r.to === "/") navigate({ to: "/", hash: r.hash ?? "inicio" }); else navigate({ to: "/tutoriales-amigurumis" }); }
     else if (r.kind === "lesson") navigate({ to: "/", search: { v: r.index } });
     else navigate({ to: "/tutoriales-amigurumis", search: { v: r.index } });
   };

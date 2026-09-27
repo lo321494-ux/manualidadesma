@@ -13,7 +13,7 @@ const WATCHED_KEY = "crochet-watched-lessons";
 
 export const Route = createFileRoute("/")({
   validateSearch: (s: Record<string, unknown>): { v?: number } => {
-    const v = Number(s.v);
+    const v = Number(s["v"]);
     return Number.isInteger(v) && v >= 0 && v < lessons.length ? { v } : {};
   },
   head: () => ({ meta: [

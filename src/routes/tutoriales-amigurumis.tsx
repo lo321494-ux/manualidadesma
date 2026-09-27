@@ -10,7 +10,7 @@ import { amigurumis } from "@/lib/course-data";
 
 export const Route = createFileRoute("/tutoriales-amigurumis")({
   validateSearch: (s: Record<string, unknown>): { v?: number } => {
-    const v = Number(s.v);
+    const v = Number(s["v"]);
     return Number.isInteger(v) && v >= 0 && v < amigurumis.length ? { v } : {};
   },
   head: () => ({ meta: [
