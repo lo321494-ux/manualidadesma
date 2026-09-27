@@ -8,6 +8,8 @@ export function VideoPlayer({items,index,onClose,onChange}:{items:VideoItem[];in
   useEffect(()=>{setPart(0);document.body.style.overflow="hidden";return()=>{document.body.style.overflow=""}},[index]);
   useEffect(()=>{const close=(e:KeyboardEvent)=>e.key==="Escape"&&onClose();window.addEventListener("keydown",close);return()=>window.removeEventListener("keydown",close)},[onClose]);
   const command=(func:string)=>iframe.current?.contentWindow?.postMessage(JSON.stringify({event:"command",func,args:[]}),"*");
+  const send=(func:string,args:unknown[])=>iframe.current?.contentWindow?.postMessage(JSON.stringify({event:"command",func,args}),"*");
+  const tune=()=>{setPlaying(true);iframe.current?.contentWindow?.postMessage(JSON.stringify({event:"listening",id:1}),"*");let n=0;const t=setInterval(()=>{send("unloadModule",["captions"]);send("unloadModule",["cc"]);send("setOption",["captions","track",{}]);send("setPlaybackQuality",["hd1080"]);send("setPlaybackQualityRange",["hd1080","highres"]);if(++n>12)clearInterval(t)},700)};
   const toggle=()=>{command(playing?"pauseVideo":"playVideo");setPlaying(!playing)};
   const goFull=()=>{const el=frame.current as (HTMLDivElement & {webkitRequestFullscreen?:()=>void})|null; if(!el) return; if(el.requestFullscreen) el.requestFullscreen().then(()=>{(screen.orientation as ScreenOrientation & {lock?:(o:string)=>Promise<void>}).lock?.("landscape").catch(()=>{})}).catch(()=>{}); else el.webkitRequestFullscreen?.()};
   if(!item) return null;
@@ -16,7 +18,7 @@ export function VideoPlayer({items,index,onClose,onChange}:{items:VideoItem[];in
     <div className="player-shell">
       <div className="player-top"><p>{items===lessonsRef?`Lección ${index+1} de ${items.length}`:"Tutorial"} <strong>{item.shortTitle}</strong></p><Button variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar video"><X/></Button></div>
       {id ? <div className="video-frame" ref={frame}>
-        <iframe ref={iframe} key={`${id}-${index}`} src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=0&disablekb=1&fs=0&cc_load_policy=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1`} title={item.title} allow="autoplay; encrypted-media; fullscreen" onLoad={()=>setPlaying(true)} />
+        <iframe ref={iframe} key={`${id}-${index}`} src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=0&disablekb=1&fs=0&cc_load_policy=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1&vq=hd1080&hl=es&cc_lang_pref=none&origin=${typeof window!=="undefined"?encodeURIComponent(window.location.origin):""}`} title={item.title} allow="autoplay; encrypted-media; fullscreen" onLoad={tune} />
         <button type="button" className="video-shield" aria-label={playing?"Pausar video":"Reproducir video"} onClick={toggle} onContextMenu={(e)=>e.preventDefault()}>{!playing&&<span className="video-shield-state"><Play/></span>}</button>
         <Button className="fullscreen-button" variant="secondary" size="icon" aria-label="Ver en pantalla completa" onClick={goFull}><Maximize/></Button>
       </div> : <div className="video-unavailable"><p>Este tutorial incluye el patrón visual, pero no tiene un video disponible para reproducir aquí.</p></div>}
