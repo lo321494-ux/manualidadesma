@@ -1,4 +1,5 @@
-import { requireAccess } from "@/lib/gate.functions";
+import { getAccess } from "@/lib/gate.functions";
+import { PreviewGate } from "@/components/preview-gate";
 import { createFileRoute } from "@tanstack/react-router";
 import { Play } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/tutoriales-amigurumis")({
     const v = Number(s["v"]);
     return Number.isInteger(v) && v >= 0 && v < amigurumis.length ? { v } : {};
   },
-  beforeLoad: () => requireAccess(),
+  loader: () => getAccess(),
   head: () => ({ meta: [
     { title: "Tutoriales de Amigurumis | Crochet" },
     { name: "description", content: "Aprende a tejer amigurumis paso a paso con tutoriales fáciles, videos y patrones." },
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/tutoriales-amigurumis")({
 
 function AmigurumisPage() {
   useCinemaEffects();
+  const access = Route.useLoaderData();
   const { v } = Route.useSearch();
   const navigate = Route.useNavigate();
   const playing = v ?? null;
@@ -48,5 +50,6 @@ function AmigurumisPage() {
     </section>
     <SiteFooter />
     {playing !== null && <VideoPlayer items={amigurumis} index={playing} onClose={() => setPlaying(null)} onChange={setPlaying} />}
+    <PreviewGate unlocked={access.unlocked} remaining={access.remaining} />
   </main>;
 }
