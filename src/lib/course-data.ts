@@ -23,6 +23,7 @@ export const lessons: VideoItem[] = [
 
 const wp = "https://arteencrochet.com/wp-content/uploads";
 export const amigurumis: VideoItem[] = [
+  { title:"Virgen en Crochet Amigurumi paso a paso",shortTitle:"Virgen",description:"Una figura tejida llena de significado y creatividad.",image:`${wp}/2021/05/Virgen-en-crochet-768x432.jpg`,videoIds:["rlv6xChJNHM","pdtGzPM8BNA"]},
   { title:"Jesús amigurumi",shortTitle:"Jesús amigurumi",description:"Un proyecto especial que combina técnica, detalle y significado.",date:"24 JUN 2026",image:`${wp}/2026/06/jesus-amigurumi-768x576.jpg`,videoIds:[]},
   { title:"Ovejita amigurumi: cómo hacer una oveja funko a crochet paso a paso",shortTitle:"Ovejita amigurumi",description:"Una oveja funko a crochet con su característica cabeza cuadrada.",date:"8 ABR 2026",image:`${wp}/2026/04/Ovejita-Amigurumi-blog-768x576.jpg`,videoIds:["iGoDbsh3Ipk","jXVANFS5VjY","fsSgoiuDbrM","jQZ57n97vCA","qA3SwrqF7To"]},
   { title:"Llavero Calamar de Coraline amigurumi",shortTitle:"Calamar de Coraline",description:"Teje este pequeño llavero siguiendo el paso a paso.",date:"14 ABR 2025",image:`${wp}/2025/04/calamar_Coraline-768x432.png`,videoIds:[]},
@@ -41,5 +42,4 @@ export const amigurumis: VideoItem[] = [
   { title:"Gato calabaza a crochet",shortTitle:"Gato Halloween",description:"Un gato calabaza ideal para celebrar Halloween.",image:`${wp}/2021/09/Gato-halloween-en-crochet-1-768x432.jpg`,videoIds:["7ZEKiY-FtSA"]},
   { title:"Gatitos amigurumi paso a paso",shortTitle:"Gatitos",description:"Gatitos amigurumi tiernos y fáciles explicados paso a paso.",image:`${wp}/2021/09/Gatitos-amigurumi-768x432.jpg`,videoIds:["DBpE04L1QBU"]},
   { title:"Cómo tejer un pollo amigurumi paso a paso",shortTitle:"Pollo",description:"Una manera hermosa y sencilla de iniciarte en los amigurumis.",image:`${wp}/2021/05/pollo_amigurumi-768x432.jpg`,videoIds:["CnGk_0u2mi0"]},
-  { title:"Virgen en Crochet Amigurumi paso a paso",shortTitle:"Virgen",description:"Una figura tejida llena de significado y creatividad.",image:`${wp}/2021/05/Virgen-en-crochet-768x432.jpg`,videoIds:["rlv6xChJNHM","pdtGzPM8BNA"]},
 ];
