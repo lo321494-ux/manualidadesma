@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return <header className="site-header">
-    <Link to="/" hash="inicio" className="brand" aria-label="Arte en Crochet, inicio"><span className="brand-mark">✺</span><span>ATELIER</span></Link>
+    <Link to="/" hash="inicio" className="brand" aria-label="Crochet, inicio"><span className="brand-mark" aria-hidden="true">✧</span><span className="brand-name">Crochet</span><span className="brand-mark" aria-hidden="true">✧</span></Link>
     <nav className="desktop-nav" aria-label="Navegación principal">
       <Link to="/" hash="inicio">Inicio</Link><Link to="/" hash="curso">Curso</Link><Link to="/" hash="lecciones">Lecciones</Link><Link to="/tutoriales-amigurumis">Tutoriales de Amigurumis</Link>
     </nav>

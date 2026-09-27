@@ -231,3 +231,12 @@
 @media (min-width: 761px) { .menu-toggle { display:none!important; } }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important; } }
+
+/* Angelic script brand */
+.brand-name { font-family:"Great Vibes",cursive; font-size:2.1rem; font-weight:400; letter-spacing:.02em; line-height:1; text-transform:none; background:linear-gradient(180deg,var(--foreground),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 0 .6rem color-mix(in oklab,var(--accent) 45%,transparent)); }
+.brand .brand-mark { font-size:.85rem; opacity:.85; }
+
+/* Shield that keeps viewers on the page (blocks YouTube links inside the video) */
+.video-shield { position:absolute; inset:0; z-index:2; background:transparent; border:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.video-shield-state { position:absolute; left:50%; top:50%; translate:-50% -50%; width:4rem; height:4rem; border-radius:999px; display:grid; place-items:center; background:color-mix(in oklab,var(--background) 70%,transparent); color:var(--foreground); pointer-events:none; }
+.video-frame:fullscreen { width:100vw; height:100vh; aspect-ratio:auto; }

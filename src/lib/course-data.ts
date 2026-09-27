@@ -23,11 +23,8 @@ export const lessons: VideoItem[] = [
 
 const wp = "https://arteencrochet.com/wp-content/uploads";
 export const amigurumis: VideoItem[] = [
-  { title:"Snitch dorada a crochet: amigurumi paso a paso",shortTitle:"Snitch dorada",description:"Aprende a tejer una pequeña Snitch amigurumi, incluyendo sus alas, para convertirla en un original llavero.",date:"3 SEP 2026",image:`${wp}/2026/09/Snitch-a-crochet-mini-BLOG-1.png`,videoIds:["v7832yexIE4","inM76olIcOw"]},
   { title:"Jesús amigurumi",shortTitle:"Jesús amigurumi",description:"Un proyecto especial que combina técnica, detalle y significado.",date:"24 JUN 2026",image:`${wp}/2026/06/jesus-amigurumi-768x576.jpg`,videoIds:[]},
   { title:"Ovejita amigurumi: cómo hacer una oveja funko a crochet paso a paso",shortTitle:"Ovejita amigurumi",description:"Una oveja funko a crochet con su característica cabeza cuadrada.",date:"8 ABR 2026",image:`${wp}/2026/04/Ovejita-Amigurumi-blog-768x576.jpg`,videoIds:["iGoDbsh3Ipk","jXVANFS5VjY","fsSgoiuDbrM","jQZ57n97vCA","qA3SwrqF7To"]},
-  { title:"Harry Potter amigurumi paso a paso",shortTitle:"Harry Potter",description:"Tutorial gratuito para tejer un llavero mágico en crochet de 8 cm.",date:"20 ENE 2026",image:`${wp}/2026/01/Harry-Potter-Thumb-1-768x432.png`,videoIds:["_o-DjPgO8ts","RlkNvYNjz5s"]},
-  { title:"Colibrí a crochet paso a paso",shortTitle:"Colibrí",description:"Realiza un colibrí en crochet con tres colores, desde la cabeza hasta las plumas.",date:"23 SEP 2025",image:`${wp}/2025/09/colibri_thumb-768x432.jpg`,videoIds:["kM7akE4T9lg"]},
   { title:"Llavero Calamar de Coraline amigurumi",shortTitle:"Calamar de Coraline",description:"Teje este pequeño llavero siguiendo el paso a paso.",date:"14 ABR 2025",image:`${wp}/2025/04/calamar_Coraline-768x432.png`,videoIds:[]},
   { title:"Spiderman Miles Morales Amigurumi",shortTitle:"Miles Morales",description:"Amigurumi inspirado en el Spiderverso, de 14 cm de alto.",date:"11 FEB 2025",image:`${wp}/2025/02/Spiderman-Miles-Morales-768x432.png`,videoIds:[]},
   { title:"Mew Amigurumi paso a paso",shortTitle:"Mew",description:"Teje un Pokémon Mew amigurumi de aproximadamente 16 cm.",date:"29 ENE 2025",image:`${wp}/2025/01/mew-amigurumi_THUMB-768x432.jpg`,videoIds:[]},
@@ -35,9 +32,8 @@ export const amigurumis: VideoItem[] = [
   { title:"Pesebre en crochet",shortTitle:"Pesebre",description:"Una versión paso a paso de un pesebre en crochet con personajes de cabeza cuadrada.",date:"25 MAY 2024",image:`${wp}/2024/05/pesebre-en-crochet-768x576.jpg`,videoIds:[]},
   { title:"Oveja amigurumi: tutorial paso a paso",shortTitle:"Oveja",description:"Uno de los proyectos más tiernos para tejer a crochet.",image:`${wp}/2024/05/oveja_amigurumi-768x576.jpg`,videoIds:[]},
   { title:"Tortuga amigurumi",shortTitle:"Tortuga",description:"Teje por partes una encantadora tortuga amigurumi.",image:`${wp}/2023/09/tortuga-amigurumi-768x432.jpg`,videoIds:[]},
-  { title:"Estrella en crochet Mario Bros",shortTitle:"Estrella",description:"Un proyecto divertido inspirado en el mundo de Mario Bros.",image:`${wp}/2023/05/estrella-mario-bros-9-768x576.jpg`,videoIds:["2Tl3jXS26Wg"]},
+  { title:"Estrella en crochet Mario Bros",shortTitle:"Estrella",description:"Un proyecto divertido inspirado en el mundo de Mario Bros.",image:`${wp}/2023/05/estrella-mario-bros-9-768x576.jpg`,videoIds:[]},
   { title:"Conejo Amigurumi",shortTitle:"Conejo",description:"Un conejo amigurumi perfecto para cualquier estación del año.",image:`${wp}/2023/04/conejo-amigurumi-768x432.png`,videoIds:["fPP5h5adZ70"]},
-  { title:"Amigurumi Personalizado de Bádminton",shortTitle:"Bádminton",description:"Una figura personalizada inspirada en la selección colombiana de bádminton.",image:`${wp}/2022/09/chicas1.jpg`,videoIds:["1Y9tzaTjPF8"]},
   { title:"Kirby Amigurumi a Crochet – Patrón Paso a Paso",shortTitle:"Kirby",description:"Un proyecto fácil y divertido para amantes de los videojuegos.",image:`${wp}/2022/06/kirby-1-768x432.jpg`,videoIds:["oelE9mcAYYo"]},
   { title:"Frailejón Ernesto Pérez a crochet",shortTitle:"Frailejón",description:"Un tutorial inspirado en la naturaleza para tejer paso a paso.",image:`${wp}/2022/03/frailejon-ernesto-perez-768x576.jpg`,videoIds:["RfT_Fy3jA_A"]},
   { title:"Cabeza de muñeco de nieve a crochet",shortTitle:"Muñeco de nieve",description:"Teje una esfera navideña con forma de muñeco de nieve.",image:`${wp}/2021/12/muneco-de-nieve-768x432.jpg`,videoIds:["NstrDgx6w3s","gZN--Zyel3w"]},
