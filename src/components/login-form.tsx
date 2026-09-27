@@ -12,7 +12,7 @@ export function LoginForm({ onDone }: { onDone?: () => void }) {
   const [busy, setBusy] = useState(false);
   const [show, setShow] = useState(false);
   const [ready, setReady] = useState(false);
-  useEffect(() => { setReady(true); if (window.location.search) window.history.replaceState(null, "", window.location.pathname); }, []);
+  useEffect(() => { setReady(true); if (window.location.search) void router.navigate({ to: window.location.pathname as "/ingresar", search: {}, replace: true }); }, [router]);
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); setBusy(true); setError(false);
     const f = new FormData(e.currentTarget);
