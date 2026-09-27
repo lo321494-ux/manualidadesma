@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TutorialesAmigurumisRouteImport } from './routes/tutoriales-amigurumis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TutorialesAmigurumisRoute = TutorialesAmigurumisRouteImport.update({
+  id: '/tutoriales-amigurumis',
+  path: '/tutoriales-amigurumis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/tutoriales-amigurumis': typeof TutorialesAmigurumisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/tutoriales-amigurumis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/tutoriales-amigurumis'
+  id: '__root__' | '/' | '/tutoriales-amigurumis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TutorialesAmigurumisRoute: typeof TutorialesAmigurumisRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tutoriales-amigurumis': {
+      id: '/tutoriales-amigurumis'
+      path: '/tutoriales-amigurumis'
+      fullPath: '/tutoriales-amigurumis'
+      preLoaderRoute: typeof TutorialesAmigurumisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TutorialesAmigurumisRoute: TutorialesAmigurumisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
